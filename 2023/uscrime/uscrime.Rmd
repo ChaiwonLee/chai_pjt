@@ -3,7 +3,8 @@ title: "1973년 미국 강력범죄에 대한 주성분 분석"
 author: "이채원"
 date: "2023-12-19"
 output:
-  github_document
+  github_document:
+    keep_md: true
 ---
 ```{r global_options}
 knitr::opts_chunk$set(fig.path='Figs/')

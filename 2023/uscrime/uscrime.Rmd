@@ -6,9 +6,6 @@ output:
   github_document:
     keep_md: true
 ---
-```{r global_options}
-knitr::opts_chunk$set(fig.path='Figs/')
-```
 ---
 #### **0. 데이터 개요**  
 - 1973년 미국 각 주 강력범죄 데이터  

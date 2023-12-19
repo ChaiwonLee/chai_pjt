@@ -3,6 +3,10 @@
 이채원
 2023-12-19
 
+``` r
+knitr::opts_chunk$set(fig.path='Figs/')
+```
+
 ------------------------------------------------------------------------
 
 #### **0. 데이터 개요**
@@ -15,7 +19,7 @@
 #### **1. 데이터 불러오기**
 
 ``` r
-uscrime <- read.csv('https://raw.githubusercontent.com/ChaiwonLee/chai_pjt/main/2023/uscrime/uscrime.csv?token=GHSAT0AAAAAACLY6AY3ITPBERVA7BGPLEIWZMBRUXQ',fileEncoding = "utf-8")
+uscrime <- read.csv('https://raw.githubusercontent.com/ChaiwonLee/chai_pjt/main/2023/uscrime/uscrime.csv?token=GHSAT0AAAAAACLY6AY2WT6AQMW3UDWCALVGZMBR3EQ',fileEncoding = "utf-8")
 ```
 
 <br/>
@@ -227,7 +231,7 @@ hist(uscrime$Assault, main="Assault", xlab=" ", ylab="counts")
 hist(uscrime$Rape, main="Rape", xlab=" ", ylab="counts")
 ```
 
-![](uscrime_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](Figs/unnamed-chunk-10-1.png)<!-- -->
 <hr/>
 
 - 살인사건(Murder)과 강간사건(Rape)의 경우 상대적으로 사건 건수가 적은
@@ -317,7 +321,7 @@ eig_val
 screeplot(uscrime2_pca, type="lines", main='scree plot')
 ```
 
-![](uscrime_files/figure-gfm/unnamed-chunk-14-1.png)<!-- --> <br/>
+![](Figs/unnamed-chunk-14-1.png)<!-- --> <br/>
 
 #### **11. 누적분산그림**
 
@@ -328,7 +332,7 @@ plot(cumsum(uscrime2_var_ratio), type="b", xlab="component", ylab="cumulative pr
 title("variance explained")
 ```
 
-![](uscrime_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](Figs/unnamed-chunk-15-1.png)<!-- -->
 <hr/>
 
 - 스크리그림 결과 두번째 주성분(Comp.2) 이후 그래프가 1 밑으로 감소

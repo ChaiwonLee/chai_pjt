@@ -5,6 +5,9 @@ date: "2023-12-19"
 output:
   github_document
 ---
+```{r global_options}
+knitr::opts_chunk$set(fig.path='Figs/')
+```
 ---
 #### **0. 데이터 개요**  
 - 1973년 미국 각 주 강력범죄 데이터  
@@ -14,7 +17,7 @@ output:
 
 #### **1. 데이터 불러오기**   
 ```{r}
-uscrime <- read.csv('https://raw.githubusercontent.com/ChaiwonLee/chai_pjt/main/2023/uscrime/uscrime.csv?token=GHSAT0AAAAAACLY6AY3ITPBERVA7BGPLEIWZMBRUXQ',fileEncoding = "utf-8")
+uscrime <- read.csv('https://raw.githubusercontent.com/ChaiwonLee/chai_pjt/main/2023/uscrime/uscrime.csv?token=GHSAT0AAAAAACLY6AY2WT6AQMW3UDWCALVGZMBR3EQ',fileEncoding = "utf-8")
 ```
 <br/>
 

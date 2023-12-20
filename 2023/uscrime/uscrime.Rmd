@@ -3,8 +3,7 @@ title: "1973년 미국 강력범죄에 대한 주성분 분석"
 author: "이채원"
 date: "2023-12-19"
 output:
-  html_document:
-    keep_md: true
+  github_document:
 ---
 ---
 #### **0. 데이터 개요**  

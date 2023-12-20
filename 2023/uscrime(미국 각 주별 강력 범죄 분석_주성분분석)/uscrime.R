@@ -1,3 +1,4 @@
+# 1973년 미국 각 주별 강력 범죄 분석
 # 1973년 미국 각 주 강력범죄 데이터
 # 변수 Murder, Assault, Rape는 인구 100,000명당 사고 건 수
 # 변수 UrbanPop은 도시인구 비율
@@ -5,7 +6,7 @@
 # 데이터 분석과 주성분분석
 
 # 1. 데이터 불러오기
-uscrime <- read.csv('https://raw.githubusercontent.com/ChaiwonLee/chai_pjt/main/2023/uscrime/uscrime.csv?token=GHSAT0AAAAAACLY6AY3YKWSGNWOS7QVIWTUZMBQY7Q',fileEncoding = "utf-8")
+uscrime <- read.csv('https://raw.githubusercontent.com/ChaiwonLee/chai_pjt/main/2023/uscrime(%EB%AF%B8%EA%B5%AD%20%EA%B0%81%20%EC%A3%BC%EB%B3%84%20%EA%B0%95%EB%A0%A5%20%EB%B2%94%EC%A3%84%20%EB%B6%84%EC%84%9D_%EC%A3%BC%EC%84%B1%EB%B6%84%EB%B6%84%EC%84%9D)/uscrime.csv?token=GHSAT0AAAAAACLY6AY2SOABPSWMCNNW7MIOZMCXQGQ',fileEncoding = "utf-8")
 
 
 # 2. 데이터 확인하기
@@ -103,8 +104,20 @@ hist(uscrime$Rape, main="Rape", xlab=" ", ylab="counts")
 uscrime2 <- uscrime[,c(2,3,4,5)]
 head(uscrime2)
 
-# 범죄 관련 변수는 사건 발생 건수, 인구 관련 변수는 비율이므로 단위가 다르기 때문에, 주성분분석 시 상관계수 행렬을 사용하기로 함
-uscrime2_pca = princomp(uscrime2, cor=T, scores=T)
+# 상관계수행렬로 변수들 간의 상관계수 행렬을 구하고 시각화하여 상관성을 확인함
+plot(uscrime2)
+cor(uscrime2)
+
+# 살인사건(Murder)은 폭행사건(Assault)과 큰 상관성을 보임(0.80), 강간사건(Rape)과도 어느정도 상관성이 있음(0.56)
+# 폭행사건(Assault)은 강간사건(Rape)과 상관성 있음(0.67)
+# 도시인구비율(UrbanPop)은 각 강력사건과 큰 상관성은 없어보임
+  
+# 범죄 관련 변수는 사건 발생 건수, 인구 관련 변수는 비율이기 때문에 정규화를 진행함
+uscrime2_scale <- scale(uscrime2, center=TRUE, scale=TRUE)
+head(uscrime2_scale)
+
+# 주성분분석 시 상관계수 행렬을 사용하기로 함
+uscrime2_pca = princomp(uscrime2_scale, cor=T, scores=T)
 names(uscrime2_pca)
 uscrime2_pca
 summary(uscrime2_pca)
@@ -113,20 +126,21 @@ summary(uscrime2_pca)
 # 즉 2개의 주성분이 전체 변동의 86.7%를 설명하고 있다
 
 
-# 9. 고유값 계산
+# 고유값 계산
 # 주성분 분석의 결과에서 standard deviation를 제곱하여 도출
+# 유의미한 주성분의 개수를 구하기 위한 과정, 고유값은 주성분의 분산이며 고유값이 큰 주성분을 선택함
 eig_val = uscrime2_pca$sdev^2
 eig_val
 
-# 유효한 주성분의 개수는 2개
+# 고유값이 1보다 큰 경우만 선택하고자 함, comp.1은 고유값이 2.48, comp.2는 고유값이 0.99이므로, 유효한 주성분의 개수는 2개
 # comp.2의 경우 소수점 2자리에서 반올림하면 1이 되기 때문에 유효값으로 판단
 
-
-# 10. 스크리그림
+# 스크리그림
+# 앞서 계산한 고유값을 그래프로 표현함
 par(mfrow=c(1,2))
 screeplot(uscrime2_pca, type="lines", main='scree plot')
 
-# 11. 누적분산그림
+# 누적분산그림
 uscrime2_var = uscrime2_pca$sdev^2
 uscrime2_var_ratio = uscrime2_var/sum(uscrime2_var)
 plot(cumsum(uscrime2_var_ratio), type="b", xlab="component", ylab="cumulative proportion")
@@ -136,11 +150,26 @@ title("variance explained")
 # 누적분산그림 결과 두번째 주성분 이후 그래프의 기울기가 크게 감소
 # 즉, 두번째 주성분까지 보유하는 것이 타당함
 
+# 첫번째, 두번째 주성분 행렬도
+par(mfrow=c(1,1))
+biplot(uscrime2_pca)
+
+# 행렬도를 통해 각 주성분에 영향을 많이 주는 변수를 찾을 수 있음
+# 영향을 많이 주는 변수는 각 주성분의 축과 평행하고 화살표가 김 
+# 화살표가 서로 가까울수록 해당 변수는 상관성이 있음
+# 첫번째 주성분(comp.1)의 경우 강간사건(Rape), 폭행사건(Assault)가 영향을 줌
+# 두번째 주성분(com.2)의 경우 도시인구 비율(UrbanPop)이 영향을 줌
+# 폭행사건(Assault)-살인사건(Murder), 폭행사건(Assault)-강간사건(Rape)은 관게가 있고, 세개의 강력범죄도 서로 연관이 있다고 할 수 있음
+# 한편 도시인구 비율(UrbanPop)은 각 강력범죄와 영향이 적음
 
 # 12. 주성분계수
+# 각 변수별로 주성분에 영향을 주는 정도를 계산함
 uscrime2_pca$loadings[,c(1:2)]
 
 # pc1 = 0.28UrbanPop + 0.54Murder + 0.58Assault + 0.54Rape
 # pc2 = -0.87UrbanPop + 0.42Murder + 0.19Assault + 0.17Rape
-# 즉, 미국의 각 주별 인구 100,000명 당 강력범죄를 설명할 때, 위의 두 개의 주성분으로 설명하는 것이 적절하함
+# 주성분 1의 경우 미국 각 주별 강력범죄 정도를 보여주는데 적절한 것으로 생각됨
+# 주성분 2의 경우 도시 인구비율(UrbanPop)이 주성분2에 음의 영향을 주므로, 도시  인구비율에 따른 강력범죄 정도를 보여주는데 적절할 것으로 예상도미
+
+
 

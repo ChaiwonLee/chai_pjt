@@ -14,4 +14,4 @@
 또는 각각의 주성분을 이용하여 일부 특징을 추출하는 것도 가능하다. 다만 이 경우 본래의 데이터가 가지고 있는 정보를 모두 담을 수 없다. (예: 주성분1은 자동차의 엔진에 대해 설명한다)
 
 ## 분석결과
-[미국 각 주별 강력 범죄 분석_주성분분석](https://github.com/ChaiwonLee/chai_pjt/blob/3fb146cf2ff67ae5aca29b2ddcb679810c69e1e6/2023/uscrime(%EB%AF%B8%EA%B5%AD%20%EA%B0%81%20%EC%A3%BC%EB%B3%84%20%EA%B0%95%EB%A0%A5%20%EB%B2%94%EC%A3%84%20%EB%B6%84%EC%84%9D_%EC%A3%BC%EC%84%B1%EB%B6%84%EB%B6%84%EC%84%9D)/uscrime._result.md)
+[미국 각 주별 강력 범죄 분석_주성분분석](2023/uscrime(미국 각 주별 강력 범죄 분석_주성분분석)/uscrime._result.md)

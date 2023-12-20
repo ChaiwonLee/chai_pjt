@@ -16,7 +16,7 @@
 #### **1. 데이터 불러오기**
 
 ``` r
-uscrime <- read.csv('https://raw.githubusercontent.com/ChaiwonLee/chai_pjt/main/2023/uscrime(%EB%AF%B8%EA%B5%AD%20%EA%B0%81%20%EC%A3%BC%EB%B3%84%20%EA%B0%95%EB%A0%A5%20%EB%B2%94%EC%A3%84%20%EB%B6%84%EC%84%9D_%EC%A3%BC%EC%84%B1%EB%B6%84%EB%B6%84%EC%84%9D)/uscrime.csv?token=GHSAT0AAAAAACLY6AY2MHNI6NC54ACYWY6GZMCYZWA',fileEncoding = "utf-8")
+uscrime <- read.csv('https://raw.githubusercontent.com/ChaiwonLee/chai_pjt/main/2023/uscrime(%EB%AF%B8%EA%B5%AD%20%EA%B0%81%20%EC%A3%BC%EB%B3%84%20%EA%B0%95%EB%A0%A5%20%EB%B2%94%EC%A3%84%20%EB%B6%84%EC%84%9D_%EC%A3%BC%EC%84%B1%EB%B6%84%EB%B6%84%EC%84%9D)/uscrime.csv?token=GHSAT0AAAAAACLY6AY2ZOYT37YH2MLD6XSKZMCZBKQ',fileEncoding = "utf-8")
 ```
 
 <br/>
@@ -233,9 +233,8 @@ hist(uscrime$Rape, main="Rape", xlab=" ", ylab="counts")
   주가 많음(왼쪽으로 치우친 종 모양)  
 - 폭행사건(Assault)의 경우 살인사건(Murder)이나 강간사건(Rape)에 비해
   사건 건수가 어느 정도 발생하는 주가 많음(중앙이 뚱뚱한 종 모양)  
-  <br/>
-- 즉, ***폭행사건(Assault)은 살인사건(Murder)보다 강간사건(Rape)보다
-  많은 주에서 자주 발생***하는 것이라 추측해볼 수 있음  
+- ***즉, 폭행사건(Assault)은 살인사건(Murder)보다 강간사건(Rape)보다
+  많은 주에서 자주 발생하는 것이라 추측해볼 수 있음***  
   <br/>
 
 #### **8. 주성분분석**
@@ -394,7 +393,7 @@ biplot(uscrime2_pca)
 - ***폭행사건(Assault)-살인사건(Murder),
   폭행사건(Assault)-강간사건(Rape)은 관게가 있고, 세개의 강력범죄도 서로
   연관이 있다고 할 수 있음***
-- ***한편 도시인구 비율(UrbanPop)은 각 강력범죄와 영향이 적음***
+- ***한편 도시인구 비율(UrbanPop)은 각 강력범죄와 영향이 적음*** <br/>
 
 #### **12. 주성분계수**
 
